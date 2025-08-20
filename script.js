@@ -1,17 +1,13 @@
-// List of sounds (कम से कम 6 sounds Cypress test ke liye)
 const sounds = ["sound1", "sound2", "sound3", "sound4", "sound5", "sound6"];
 
-// Buttons container create karo
-const container = document.createElement("section");
-container.id = "buttons";
-document.body.appendChild(container);
+const buttonsContainer = document.getElementById("buttons");
 
 let currentAudio = null;
 
-// Har sound ke liye button banao
+// Create a button for each sound
 sounds.forEach(sound => {
   const btn = document.createElement("button");
-  btn.className = "btn";
+  btn.classList.add("btn");
   btn.innerText = sound;
 
   btn.addEventListener("click", () => {
@@ -25,12 +21,12 @@ sounds.forEach(sound => {
     });
   });
 
-  container.appendChild(btn);
+  buttonsContainer.appendChild(btn);
 });
 
-// Stop button banao
+// Create stop button
 const stopBtn = document.createElement("button");
-stopBtn.className = "stop";
+stopBtn.classList.add("stop");
 stopBtn.innerText = "Stop";
 
 stopBtn.addEventListener("click", () => {
@@ -40,4 +36,4 @@ stopBtn.addEventListener("click", () => {
   }
 });
 
-container.appendChild(stopBtn);
+buttonsContainer.appendChild(stopBtn);
