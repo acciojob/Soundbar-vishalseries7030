@@ -1,15 +1,17 @@
-//your JS code here. If required.
-const sounds = ["sound1", "sound2", "sound3"]; 
-// make sure you have sound1.mp3, sound2.mp3, sound3.mp3 in the "sounds" folder
+// List of sounds (कम से कम 6 sounds Cypress test ke liye)
+const sounds = ["sound1", "sound2", "sound3", "sound4", "sound5", "sound6"];
 
-const buttonsContainer = document.getElementById("buttons");
+// Buttons container create karo
+const container = document.createElement("section");
+container.id = "buttons";
+document.body.appendChild(container);
 
 let currentAudio = null;
 
-// Create a button for each sound
+// Har sound ke liye button banao
 sounds.forEach(sound => {
   const btn = document.createElement("button");
-  btn.classList.add("btn");
+  btn.className = "btn";
   btn.innerText = sound;
 
   btn.addEventListener("click", () => {
@@ -18,15 +20,17 @@ sounds.forEach(sound => {
       currentAudio.currentTime = 0;
     }
     currentAudio = new Audio(`./sounds/${sound}.mp3`);
-    currentAudio.play();
+    currentAudio.play().catch(err => {
+      console.warn("Audio play failed:", err);
+    });
   });
 
-  buttonsContainer.appendChild(btn);
+  container.appendChild(btn);
 });
 
-// Create stop button
+// Stop button banao
 const stopBtn = document.createElement("button");
-stopBtn.classList.add("stop");
+stopBtn.className = "stop";
 stopBtn.innerText = "Stop";
 
 stopBtn.addEventListener("click", () => {
@@ -36,4 +40,4 @@ stopBtn.addEventListener("click", () => {
   }
 });
 
-buttonsContainer.appendChild(stopBtn);
+container.appendChild(stopBtn);
